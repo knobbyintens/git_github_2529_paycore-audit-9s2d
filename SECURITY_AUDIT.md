@@ -15,9 +15,24 @@ Our remediation sprint focuses on the following workstreams:
 
 ## 🛡️ Open Audit Findings
 
-- [ ] [HIGH] **services/identity/token_vault.py:31** :: Rotate service account credentials on startup
-- [ ] [MEDIUM] **services/reporting/export_job.py:52** :: Validate export batch size
-- [ ] [CRITICAL] **services/payments/ledger.py:61** :: Add double-entry verification for refunds
+- [ ] [CRITICAL] **batch/daily_settlement.py:15** :: Fail closed when a settlement batch is partially loaded
+- [ ] [CRITICAL] **services/identity/mfa_service.py:17** :: Invalidate backup codes after a single successful use
+- [ ] [CRITICAL] **services/identity/session_store.py:29** :: Invalidate refresh tokens when a password is changed
+- [ ] [CRITICAL] **services/identity/token_vault.py:16** :: Replace hardcoded fallback API key in the vault bootstrap path
+- [ ] [CRITICAL] **services/payments/ledger.py:32** :: Reconcile refund entries with double-entry postings
+- [ ] [CRITICAL] **services/reporting/export_job.py:20** :: Redact customer PII columns in CSV exports
+- [ ] [CRITICAL] **services/reporting/redaction_rules.py:12** :: Prevent requester-controlled allowlists from bypassing redaction
+- [ ] [HIGH] **batch/daily_settlement.py:22** :: Verify settlement totals against the ledger balance before commit
+- [ ] [HIGH] **services/gateway/rate_limiter.py:9** :: Apply per-tenant quotas to the token exchange endpoint
+- [ ] [HIGH] **services/identity/mfa_service.py:22** :: Rate limit repeated MFA verification attempts per user
+- [ ] [HIGH] **services/identity/session_store.py:36** :: Encrypt session tokens at rest in the Redis store
+- [ ] [HIGH] **services/identity/token_vault.py:32** :: Enforce per-service token expiry during credential exchange
+- [ ] [HIGH] **services/identity/token_vault.py:55** :: Reject plaintext token storage in the session cache
+- [ ] [HIGH] **services/notifications/dispatcher.py:21** :: Add a dead-letter queue for failed webhook deliveries
+- [ ] [HIGH] **services/payments/ledger.py:48** :: Validate idempotency keys on every ledger append
+- [ ] [HIGH] **services/payments/refund_worker.py:7** :: Make refund retries idempotent across worker restarts
+- [ ] [HIGH] **services/reporting/export_job.py:25** :: Add checksum verification for generated export bundles
+- [ ] [HIGH] **services/reporting/redaction_rules.py:7** :: Enforce masking on nested customer records in exports
 
 ## 📚 Revision History
 
